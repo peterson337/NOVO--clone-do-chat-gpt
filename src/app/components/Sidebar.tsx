@@ -2,14 +2,19 @@ import React, {ReactNode}  from 'react'
 import { AiOutlineClose } from 'react-icons/ai';
 import { GrAdd } from 'react-icons/gr';
 import SidebarButton from "../components/SidebarButton";
+import {FaTrash} from "react-icons/fa";
+
 
 type Props = {
     children: ReactNode;
     open: boolean;
     onCLose: () => void;
+    onCLear: () => void;
+    onNewChat: () => void;
+
 }
 
-const Sidebar = ({open, onCLose,  children} : Props) => {
+const Sidebar = ({open, onCLose, onCLear, onNewChat, children} : Props) => {
   return (
     <section className={`fixed left-0 bottom-0 top-0 text-white 
     ${open? 'w-screen bg-gray-600/75' : 'w-0'} md:w-64 md:static`}>
@@ -17,7 +22,7 @@ const Sidebar = ({open, onCLose,  children} : Props) => {
 
             <div className='flex flex-col w-64 p-2 bg-[#202123]'> 
 
-            <div className='flex items-center p-3 rounded-md text-sm cursor-pointer border border-white/20 hover:bg-gray-500/20'>
+            <div onClick={onNewChat} className='flex items-center p-3 rounded-md text-sm cursor-pointer border border-white/20 hover:bg-gray-500/20'>
             <GrAdd className='text-white mr-2 ml-1'/>
                 New chat
             </div>
@@ -29,8 +34,9 @@ const Sidebar = ({open, onCLose,  children} : Props) => {
 
             <div className='border-t border-gray-700 pt-2'>
                 <SidebarButton
+                 icon={<FaTrash/>}
                  label={"Limpar todas as conversas"}
-                 />
+                 onClick={onCLear}/>
             </div>
 
             </div>

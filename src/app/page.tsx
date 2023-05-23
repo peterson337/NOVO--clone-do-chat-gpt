@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import { AiOutlineMenu } from 'react-icons/ai';
 
 
+
 const Page = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -12,11 +13,23 @@ const Page = () => {
     setSidebarOpen(false);
   }
 
+  const handlerClearConversation = () => {
+
+  }
+
+  const handlerNewChat = () => {
+
+  }
+
   return (
     <main className='flex min-h-screen bg-gpt-gray'>
        <Sidebar
        open={sidebarOpen}
-       onCLose={closeSidebar}>
+       onCLose={closeSidebar}
+       onCLear={handlerClearConversation}
+       onNewChat={handlerNewChat}>
+        
+
       </Sidebar>   
 
     <section className='text-2xl text-white ml-3 mt-3 md:hidden'>

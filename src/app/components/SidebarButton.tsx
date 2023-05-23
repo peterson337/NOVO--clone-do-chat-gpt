@@ -2,7 +2,7 @@ import React, {ReactNode} from 'react'
 type Props = {
     icon?: ReactNode;
     label: string;
-    onClick?: () => void;
+    onClick: () => void;
 }
 const SidebarButton = ({icon, label, onClick} : Props) => {
   return (
