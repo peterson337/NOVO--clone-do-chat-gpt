@@ -1,6 +1,6 @@
 import { type } from 'os'
 import React from 'react'
-import { ChatMessage } from '../types/chatMessage'
+import { ChatMessage } from '../types/ChatMessage'
 import Image from 'next/image'
 import { FaUserCircle } from 'react-icons/fa'
 
