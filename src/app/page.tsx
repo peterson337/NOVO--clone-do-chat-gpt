@@ -2,12 +2,17 @@
 import Image from 'next/image'
 import React, {useState} from 'react'
 import Sidebar from "./components/Sidebar";
-import { AiOutlineMenu } from 'react-icons/ai';
+import Header from "./components/Header";
+import ChatArea from "./components/ChatArea";
+import { Chat } from './types/Chat';
 
 
 
 const Page = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [chatArchive, setChatArchive] = useState<Chat>();
+
+  const openSidebar = () => setSidebarOpen(true);
 
   const closeSidebar = () => {
     setSidebarOpen(false);
@@ -28,12 +33,19 @@ const Page = () => {
        onCLose={closeSidebar}
        onCLear={handlerClearConversation}
        onNewChat={handlerNewChat}>
-        
 
       </Sidebar>   
 
-    <section className='text-2xl text-white ml-3 mt-3 md:hidden'>
-      <button onClick={() => setSidebarOpen(true)}><AiOutlineMenu/></button>
+    <section className='flex flex-col w-full '>
+
+      <Header
+      openSidebarClick={openSidebar}
+      title={'title'}
+      newChatClick={handlerNewChat}
+        />
+
+        <ChatArea
+        chat={chatArchive}/>
     </section>
 
        </main>
