@@ -18,6 +18,8 @@ module.exports = {
         'gpt-lightgray': '#40414F',  
       },
 
+      
+
     },
   },
   plugins: [],
