@@ -18,7 +18,30 @@ const Page = () => {
   const [chatActive, setChatActive] = useState<Chat>();
   const [AIloading, setAIloading] = useState(false);
 
+  
 
+  useEffect(() => {
+    // Carregar os chats salvos do localStorage ao carregar a página
+    const savedChats = localStorage.getItem('chatList');
+    if (savedChats) {
+      setChatList(JSON.parse(savedChats));
+    }
+  }, []);
+
+  useEffect(() => {
+    // Salvar os chats no localStorage sempre que houver uma alteração na lista
+    localStorage.setItem('chatList', JSON.stringify(chatList));
+  }, [chatList]);
+
+  useEffect(() => {
+    // Retrieve the active chat ID from localStorage
+    const activeChatId = localStorage.getItem('activeChatId');
+  
+    // Set the active chat ID if it exists
+    if (activeChatId) {
+      setChatActiveId(activeChatId);
+    }
+  }, []);
   
 
   useEffect(() => {
@@ -42,13 +65,13 @@ const Page = () => {
             author: 'ai',
             body: `Eu sou ChatGPT, um modelo de linguagem desenvolvido pela OpenAI. Meu objetivo é ajudar a fornecer informações e responder a perguntas de maneira útil e compreensível. Posso auxiliar em uma variedade de tópicos e tentarei ajudar da melhor forma possível com base no conhecimento que adquiri até setembro de 2021. Como uma IA, não possuo uma identidade pessoal, mas estou aqui para ajudá-lo com suas dúvidas e solicitações. Como posso ser útil para você hoje? :)`,
           })
+            // Save updated chat list to localStorage
+          localStorage.setItem('chatList', JSON.stringify(chatLIstClone));
         }
 
         setChatList(chatLIstClone);
         setAIloading(false);
     }, 2000)
-
-    
   }
     
 
@@ -74,16 +97,21 @@ const Page = () => {
     if (!chatActiveId){
       // Creating a new chat
       let newChatId = uuidv4();
-      setChatList([{
+      const newChat: Chat = {
         id: newChatId,
         title: message,
         messages: [
-          {id:uuidv4(), 
-           author: 'me',
-            body: message}
-        ]
-      }, ...chatList]);
-      setChatActiveId(newChatId)
+          {
+            id: uuidv4(),
+            author: 'me',
+            body: message,
+          },
+        ],
+      };
+
+      const updatedChatList: Chat[] = [newChat, ...chatList];
+      setChatList(updatedChatList);
+      setChatActiveId(newChatId);
     }else{
       //Updating existing chat
         let chatListClone = [...chatList];
@@ -94,16 +122,19 @@ const Page = () => {
           body: message
         });
         setChatList(chatListClone);
-    }   
-   
+    }
         setAIloading(true);
   }
 
   const handleSelectChat = (id: string) => {
         if (AIloading) return;
         let item = chatList.find(item => item.id === id);
-        if (item)
-        setChatActiveId(item.id);
+        if (item) {
+          setChatActiveId(item.id);
+      
+          // Save the active chat ID to localStorage
+          localStorage.setItem('activeChatId', item.id);
+        }
 
         /* if (!handleDeleteChat() || !handleEditiChat()) {
             closeSidebar();
@@ -129,7 +160,6 @@ const Page = () => {
             setChatList(chatListClone);
             }
 
-           
   }
 
   return (

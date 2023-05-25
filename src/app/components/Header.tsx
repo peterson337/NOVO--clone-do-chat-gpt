@@ -1,6 +1,6 @@
 import React from 'react'
 import { AiOutlineMenu } from 'react-icons/ai';
-import { GrAdd } from 'react-icons/gr';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 
 
@@ -16,14 +16,14 @@ const Header = ({openSidebarClick, newChatClick, title} : Props) => {
     <header className='flex justify-between items-center w-full border-b border-b-gray-600 
         p-2 text-white md:hidden'>
 
-        <div onClick={openSidebarClick}>
-        <AiOutlineMenu/>
+        <div onClick={openSidebarClick} className=' p-1'>
+        <AiOutlineMenu className='text-2xl'/>
         </div>
 
         <div className='mx-2 truncate'>{title}</div>
 
-        <div>
-        <GrAdd className='text-white mr-2 ml-1'/>
+        <div onClick={newChatClick} className=' p-1'>
+        <AiOutlinePlus className='text-white mr-2 ml-1 text-2xl'/>
 
         </div>
 

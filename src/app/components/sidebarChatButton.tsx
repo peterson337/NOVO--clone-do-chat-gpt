@@ -51,60 +51,74 @@ const SidebarChatButton = ({chatItem, active, onClick, onDelete, onEdit } : Prop
     }
 
     return (
-    <div onClick={handleClickButton} className={`flex items-center rounded-md p-3 text-sm cursor-pointer hover:bg-gray-500/10 
-    ${active? 'bg-gray-500/20':
-    'bg-transparent'}`}>
-
-        <div className='mr-3'>
-            {!deleting && <BsChatLeft/>}
-            {deleting && <FaTrash/>}
-        </div>
-
-        <div className='flex-1 text-sm overflow-x-hidden'>
-             {editing &&
-               <input type="text" className='w-full bg-transparent text-sm outline-none border border-blue-500'
-               value={titleInput} 
-               onChange={e => setTitleInput(e.target.value)}
-               />     
-             }
-
-             {!editing &&
+        <div
+          onClick={handleClickButton}
+          className={`flex items-center rounded-md p-3 text-sm cursor-pointer hover:bg-gray-500/10 ${
+            active ? 'bg-gray-500/20' : 'bg-transparent'
+          }`}
+        >
+          <div className='mr-3'>
+            {!deleting && <BsChatLeft />}
+            {deleting && <FaTrash />}
+          </div>
+    
+          <div className='flex-1 text-sm overflow-x-hidden'>
+            <div className='flex'>
+              {editing && (
+                <input
+                  type='text'
+                  className='w-full bg-transparent text-sm outline-none border border-blue-500'
+                  value={titleInput}
+                  onChange={(e) => setTitleInput(e.target.value)}
+                />
+              )}
+    
+              {!editing && (
                 <div className='border border-transparent truncate'>
-                {!editing && chatItem.title}
-                {editing && `Delete "${chatItem.title}"`}
+                  {!editing && chatItem.title}
+                  {editing && `Delete "${chatItem.title}"`}
                 </div>
-             }
-
-             {active && !deleting && !editing &&
+              )}
+    
+              {active && !deleting && !editing && (
                 <div className='flex'>
-                      <div onClick={() => setEditing(true)} className='cursor-pointer mx-1 
-                      opacity-60 hover:opacity-100'>
-                      <BsPencil/>
-                      </div>  
-
-                      <div onClick={() => setDeleting(true)} className='cursor-pointer mx-1
-                       opacity-60 hover:opacity-100'>
-                      <FaTrash/>
-                     </div>  
+                  <div
+                    onClick={() => setEditing(true)}
+                    className='cursor-pointer mx-2 my-1 opacity-60 hover:opacity-100'
+                  >
+                    <BsPencil />
+                  </div>
+    
+                  <div
+                    onClick={() => setDeleting(true)}
+                    className='cursor-pointer mx-2 my-1 opacity-60 hover:opacity-100'
+                  >
+                    <FaTrash />
+                  </div>
                 </div>
-             }
-
-                {(deleting || editing) &&
+              )}
+    
+              {(deleting || editing) && (
                 <div className='flex'>
-                      <div onClick={handleComfirmButton} className='cursor-pointer mx-1 opacity-60 hover:opacity-100'>
-                      <AiOutlineCheck/>
-                      </div>  
-
-                      <div onClick={handleCancelButton} className='cursor-pointer mx-1 opacity-60 hover:opacity-100'>
-                      <AiOutlineClose/>
-                     </div>  
+                  <div
+                    onClick={handleComfirmButton}
+                    className='cursor-pointer mx-2 my-1 opacity-60 hover:opacity-100'
+                  >
+                    <AiOutlineCheck />
+                  </div>
+    
+                  <div
+                    onClick={handleCancelButton}
+                    className='cursor-pointer mx-2 my-1 opacity-60 hover:opacity-100'
+                  >
+                    <AiOutlineClose />
+                  </div>
                 </div>
-             }
-
+              )}
+            </div>
+          </div>
         </div>
-
-    </div>
-  )
+      );
 }
 
 export default SidebarChatButton

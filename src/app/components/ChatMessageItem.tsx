@@ -12,12 +12,12 @@ type Props = {
 
 const ChatMessageItem = ({item} : Props) => {
   return (
-    <div className={`py-5 ${item.author === 'ai' && 'bg-gray-600/50'}`}>
+    <div className={`py-5 md:px-72 ${item.author === 'ai' && 'bg-gray-600/50 '}`}>
         <div className='max-w-4x1 m-auto flex'>
 
-            <div className={`w-10 h-10 flex jutify-center items-center mx-4 md:ml-96  
+            <div className={`w-10 h-10 flex jutify-center items-center mx-4 md:ml-0  
             rounded
-            ${item.author === 'ai'? 'bg-green-900' : 'bg-blue-900'}`}>
+            ${item.author === 'ai'? 'bg-[#19c37d]' : 'bg-blue-900'}`}>
 
               {item.author === 'ai' && <svg width="41" height="41" viewBox="0 0 41 41" fill="none"
                xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" className="h-6 w-6 ml-2
@@ -30,7 +30,7 @@ const ChatMessageItem = ({item} : Props) => {
 
             </div>
 
-            <div className='flex-1 text-base whitespace-pre-wrap text-white'>
+            <div className='flex-1 text-sm whitespace-pre-wrap text-white'>
                 {item.body}
             </div>
 
