@@ -9,7 +9,7 @@ type  Props = {
 
 const Footer = ({onSendMessage, disable} : Props) => {
   return (
-    <footer className='w-full  p-5'>
+    <footer className='w-full  md:p-5 p-2'>
         <div className='max-w-4x1 m-auto'>
         <ChatMesseInput
         disable={disable}

@@ -2,7 +2,7 @@ import React from 'react'
 
 const ChatMessageLoading = () => {
   return (
-    <div className='py-5 bg-gray-600/50'>
+    <div className='py-5 md:px-72 bg-gray-600/50'>
         <div className='max-w-4x1 m-auto flex justify-center'>
 
             <div className='w-10 h-10 flex justify-center items-center mx-4 md:ml-10
