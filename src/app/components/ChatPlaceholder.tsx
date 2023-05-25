@@ -4,7 +4,7 @@ const ChatPlaceholder = () => {
   return (
     <div className='m-5'>
 
-        <h3 className='text-4xl font-bold text-center my-16 mt-60 text-white'>
+        <h3 className='text-4xl font-bold text-center md:my-16 my-8 md:mt-60 text-white'>
             ChatGPT
         </h3>
 
